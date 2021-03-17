@@ -1,0 +1,5 @@
+---
+- import_playbook: registry.yml
+- import_playbook: workstation.yml
+- import_playbook: welcome.yml
+...

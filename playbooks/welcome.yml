@@ -1,0 +1,21 @@
+---
+- name: Creating Welcome Message
+  hosts: workstation
+  strategy: free
+  gather_facts: False
+  become: true
+  tasks:
+  - name: Welcome to the EX180 Exam Study Environment
+    debug:
+      msg:
+        - ' The registry server and workstation have been set up successfully!'
+        - '------------------------------------------------------------------------'
+        - ' Workstation is rebooting.  If you are unable to access it right away,'
+        - ' wait a couple moments, then try again.'
+        - '------------------------------------------------------------------------'
+        - ' Accessing The Systems:'
+        - '- workstation - 192.168.88.4'
+        - '- Username/Password - vagrant/vagrant or root/password'
+        - '- Access example - `ssh root@192.168.88.4` or `vagrant ssh workstation`'
+        - ' -----------------------------------------------------------------------'
+        - '- Happy Studying!'

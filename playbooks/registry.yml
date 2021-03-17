@@ -1,0 +1,149 @@
+---
+- name: Setting up Registry Server
+  hosts: registry
+  strategy: free
+  ignore_errors: true
+  gather_facts: false
+  tasks:
+  - name: Setting Hostname
+    hostname: name=registry.do180.lab
+  
+  - name: Configuring network
+    shell: >
+      nmcli con mod "System enp0s8" 
+      ipv4.addresses "192.168.88.5/24"
+      ipv4.gateway "192.168.88.1"
+      ipv4.dns "8.8.8.8" 
+      ipv4.method manual
+  
+  - name: Building Host File
+    copy:
+      dest: /etc/hosts
+      content: |
+        127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+        :1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+        192.168.88.5 registry.do180.lab registry
+        192.168.88.4 workstation.do180.lab workstation"
+      force: yes
+
+  - name: Starting services
+    service:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
+    with_items:
+      - firewalld
+#      - httpd
+
+  - name: Enabling Firewall Services
+    firewalld: 
+      port: "{{ item }}"
+      immediate: yes
+      permanent: yes
+      state: enabled
+    with_items:
+      - 80/tcp 
+      - 443/tcp
+      - 5000/tcp
+      
+  - name: Enabling IPV6
+    shell: sysctl net.ipv6.conf.lo.disable_ipv6=0 ; sysctl net.ipv6.conf.all.disable_ipv6=0
+
+  - name: Creating Welcome Message
+    file:
+      path: /etc/profile.d/welcome.sh
+      state: touch
+      mode: 0755
+
+#  - name: Fixing SELinux Contexts
+#    shell: restorecon -Rv /var/www/html
+
+  - name: Building Welcome Message
+    blockinfile:
+      dest: /etc/profile.d/welcome.sh
+      block: |
+         #!/bin/bash
+         #
+         echo -e '
+                 +-------------------------+
+                 | Welcome to the Registry |
+                 |      Happy Studying!    |
+                 +-------------------------+
+         '"
+          Why are you here? You should be working on the system hosts...
+          Anyway, try not to reboot me or bad stuff can happen.
+         
+          You are logged into \"`hostname`\" as the \"`whoami`\" account.
+          This system is running `cat /etc/redhat-release`
+         
+          There is a container registry available at registry.do180.lab:5000
+          and repositories at http://registry.do180.lab/BaseOS and /AppStream
+         "
+- name: Set up registry machine
+  hosts: registry
+  become: true
+  vars:
+    registry_machine: registry.do180.lab
+    insecure_reg: true
+    images:
+      - hello-world
+      - httpd
+      - httpd:2.4-alpine
+      - mariadb
+  tasks:
+    - name: Install podman
+      yum:
+        name: podman
+        state: latest
+
+    - name: Create image dir
+      file:
+        path: /var/lib/registry
+        state: directory
+
+    - block:
+      - name: Set up INSECURE registries
+        copy:
+          content: |
+            [registries.search]
+            registries = ['{{ansible_fqdn}}:5000','registry.redhat.io', 'quay.io', 'docker.io']
+            
+            [registries.insecure]
+            registries = ['{{ansible_fqdn}}:5000']
+          dest: /etc/containers/registries.conf
+      when: insecure_reg == true
+
+    - name: Open FW
+      firewalld:
+        port: 5000/tcp
+        state: enabled
+        immediate: true
+        permanent: true
+
+    - name: Check for running registry container
+      shell: podman ps | grep registry
+      register: registry_running
+      ignore_errors: true
+
+    - name: Clean up any leftover registry containers
+      shell: "podman container rm registry"
+      when: registry_running.stdout != ''
+      ignore_errors: true
+
+    - name: Run registry container
+      shell: "podman run -d --name registry -p 5000:5000 -v /var/lib/registry:/var/lib/registry registry:2"
+      when: registry_running.stdout == ''
+
+    - name: Pull images
+      shell: "podman pull docker.io/library/{{ item }}"
+      loop: "{{ images }}"
+
+    - name: Tag images
+      shell: "podman tag docker.io/library/{{ item }} {{ registry_machine }}:5000/{{ item }}"
+      loop: "{{ images }}"
+
+    - name: Push images
+      shell: "podman push {{ registry_machine }}:5000/{{ item }}"
+      loop: "{{ images }}"
+
+

@@ -1,0 +1,163 @@
+---
+- name: Setting Up Workstation
+  hosts: workstation
+  strategy: free
+  ignore_errors: true
+  gather_facts: false
+  tasks:
+#  - name: Setting Up Python
+#    file:
+#      src: /usr/bin/python3.6
+#      path: /usr/bin/python
+#      state: link
+  
+  - name: Setting Hostname
+    hostname: name=workstation.do180.lab
+  
+  - name: Configuring network
+    shell: >
+      nmcli con mod "System enp0s8" 
+      ipv4.addresses "192.168.88.4/24"
+      ipv4.gateway " 192.168.88.1"
+      ipv4.dns "8.8.8.8" 
+      ipv4.dns-search do180.lab ipv4.method manual
+  
+  - name: Reloading Network
+    service: 
+      name: NetworkManager
+      state: restarted 
+  
+  - name: Building Host File
+    copy:
+      dest: /etc/hosts
+      content: |
+        127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+        :1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+        192.168.88.5 registry.do180.lab registry
+        192.168.88.4 workstation.do180.lab workstation"
+      force: true
+
+  - name: Install a few packages
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - bash-completion
+      - vim
+      - mariadb
+      - skopeo
+
+  - name: Get latest s2i version
+    shell: >
+      curl -s https://api.github.com/repos/openshift/source-to-image/releases/latest 
+      | grep browser_download_url   | grep linux-amd64   | cut -d '"' -f 4 
+    register: release_ver
+    args:
+      warn: false
+    
+  - debug:
+      msg: "Latest version of s2i = {{ release_ver.stdout }}"
+
+  - name: Create /tmp/s2i-dir
+    file:
+      path: /tmp/s2i-dir
+      state: directory
+
+  - name: Download latest s2i to /tmp/s2i-dir
+    get_url:
+      url: "{{ release_ver.stdout }}"
+      dest: /tmp/s2i-dir/s2i.tar.gz
+   
+  - name: Unarchive s2i.tar.gz
+    unarchive:
+      src: /tmp/s2i-dir/s2i.tar.gz
+      dest: /tmp/s2i-dir
+      remote_src: true
+
+  - name: Copy s2i to /usr/local/bin
+    copy:
+      src: /tmp/s2i-dir/s2i
+      dest: /usr/local/bin/s2i
+      mode: "0755"
+      remote_src: true 
+
+  - name: Create some directories
+    file:
+      path: "{{ item }}"
+      state: directory
+      owner: root
+      group: root
+      mode: "0755"
+    loop:
+      - /web
+      - /sql
+
+  - name: Copying /web/index.html
+    copy:
+      src: files/index.html
+      dest: /web/index.html
+
+  - name: Copying /sql/beer.sql
+    copy:
+      src: files/beer.sql
+      dest: /sql/beer.sql
+
+  - name: Starting services
+    service:
+      name: "{{ item }}"
+      state: started
+      enabled: true
+    with_items:
+      - firewalld
+
+  - name: Reloading Firewall
+    service: name=firewalld state=restarted
+
+  - name: Enabling IPV6
+    sysctl:
+      name: "{{ item }}"
+      value: '0'
+      sysctl_set: true
+    with_items:
+      - net.ipv6.conf.lo.disable_ipv6
+      - net.ipv6.conf.all.disable_ipv6
+  
+  - name: Changing User Password
+    shell: echo vagrant | sudo passwd vagrant --stdin
+  
+  - name: Changing Root Password
+    shell: echo password | sudo passwd root --stdin
+  
+  - name: Creating Welcome Message
+    file:
+      path: /etc/profile.d/welcome.sh
+      state: touch
+      mode: 0755
+  
+  - name: Building Welcome Message then rebooting
+    blockinfile:
+      dest: /etc/profile.d/welcome.sh
+      block: |
+         #!/bin/bash
+         #
+         echo -e '
+                   +------------------------+
+                   | Welcome to Workstation |
+                   |    Happy Studying!     |
+                   +------------------------+
+         '"
+          You are logged into \"`hostname`\" as the \"`whoami`\" account.
+          This system is running `cat /etc/redhat-release`
+         
+          For root - use \`sudo\` or \`sudo su -\`
+         
+          Image Registry availabe at registry.do180.lab:5000
+          It hosts the following images:
+            - hello-world
+            - httpd
+            - mariadb
+         "
+  - name: Adjusting Services and Rebooting
+    selinux:
+      state: permissive
+      policy: targeted

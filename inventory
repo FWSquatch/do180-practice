@@ -1,0 +1,4 @@
+[registry]
+registry.do180.lab ansible_host=192.168.88.5 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python2
+[workstation]
+workstation.do180.lab ansible_host=192.168.88.4 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python2
