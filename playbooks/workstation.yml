@@ -91,16 +91,34 @@
     loop:
       - /web
       - /sql
+      - /dockerfiles
 
-  - name: Copying /web/index.html
+  - name: Copying /web
     copy:
-      src: files/index.html
-      dest: /web/index.html
+      src: "{{ item }}"
+      dest: "/web/{{ item }}"
+    loop:
+      - index.html
+      - duffman.png
 
   - name: Copying /sql/beer.sql
     copy:
       src: files/beer.sql
       dest: /sql/beer.sql
+  - name: Copying /dockerfiles
+    copy:
+      src: "{{ item }}"
+      dest: "/dockerfiles/{{ item }}"
+    loop:
+      - index.html
+      - duffman.png
+      - Dockerfile
+
+  - name: Changing Dockerfile index
+    lineinfile:
+      path: /dockerfiles/index.html
+      regexp: 'Welcome to DO180 Practice'
+      line: <H2>Welcome to Dockerfile Duffman!</H2>
 
   - name: Starting services
     service:
