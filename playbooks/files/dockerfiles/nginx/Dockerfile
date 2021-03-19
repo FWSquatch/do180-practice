@@ -7,4 +7,4 @@
 
 # Copy index.html and duffman.png into /usr/share/nginx/html directory
 
-# Run the command nginx -g daemon off
+# Run the command 'nginx -g daemon off;'
