@@ -36,11 +36,13 @@
   
     - name: Install packages
       yum:
-        name: podman
+        name: "{{ item }}"
         state: latest
       loop:
         - podman
         - httpd
+        - vim
+        - bash-completion
   
     - name: Create image dir
       file:
@@ -88,6 +90,11 @@
         - 80/tcp
         - 443/tcp
         - 5000/tcp
+
+    - name: Restarting registry container
+      service:
+        name: reg-container
+        state: restarted
 
     - name: Pull images
       shell: "podman pull docker.io/library/{{ item }}"
