@@ -28,7 +28,7 @@
         127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
         :1         localhost localhost.localdomain localhost6 localhost6.localdomain6
         192.168.88.5 registry.do180.lab registry
-        192.168.88.4 workstation.do180.lab workstation"
+        192.168.88.4 workstation.do180.lab workstation
       force: true
 
   - name: Install a few packages
