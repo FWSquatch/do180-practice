@@ -114,6 +114,13 @@
         dest: /opt/create_webpage.sh
         mode: "0755"
 
+    - name: Create registry container cronjob
+      cron:
+        name: Hacky hack to make the registry container restart after boot
+        user: root
+        special_time: reboot
+        job: "sleep 60 && systemctl restart reg-container.service"
+
     - name: Create webpage cronjob
       cron:
         name: webpage builder
