@@ -3,7 +3,6 @@
   hosts: registry
   strategy: free
   ignore_errors: true
-  gather_facts: false
   become: true
   vars:
     registry_machine: registry.do180.lab
@@ -14,10 +13,6 @@
       - httpd:2.4-alpine
       - mariadb
   tasks:
-    - name: Setting Hostname
-      hostname:
-        name: registry.do180.lab
-
     - name: Configuring network
       shell: >
         nmcli con mod "System enp0s8"
@@ -45,8 +40,7 @@
         state: latest
       loop:
         - podman
-        - vim
-        - bash-completion
+        - httpd
   
     - name: Create image dir
       file:
@@ -66,7 +60,7 @@
       when: insecure_reg == true
   
     - name: Run registry container
-      shell: "podman run -d --name registry -p 5000:5000 -v /var/lib/registry:/var/lib/registry registry:2"
+      shell: "podman run -d --name registry -p 5000:5000 -v /var/lib/registry:/var/lib/registry:z registry:2"
   
     - name: Create service for registry container
       shell: "podman generate systemd registry > /etc/systemd/system/reg-container.service"
@@ -81,6 +75,7 @@
         enabled: yes
       with_items:
         - firewalld
+        - httpd
         - reg-container
   
     - name: Enabling Firewall Services
@@ -94,7 +89,6 @@
         - 443/tcp
         - 5000/tcp
 
-
     - name: Pull images
       shell: "podman pull docker.io/library/{{ item }}"
       loop: "{{ images }}"
@@ -106,6 +100,18 @@
     - name: Push images
       shell: "podman push {{ registry_machine }}:5000/{{ item }}"
       loop: "{{ images }}"
+
+    - name: Copy create_webpage.sh
+      copy:
+        src: create_webpage.sh
+        dest: /opt/create_webpage.sh
+        mode: "0755"
+
+    - name: Create webpage cronjob
+      cron:
+        name: webpage builder
+        user: root
+        job: "/bin/bash /opt/create_webpage.sh"
 
     - name: Creating Welcome Message
       file:
