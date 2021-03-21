@@ -5,9 +5,6 @@
   ignore_errors: true
   gather_facts: false
   tasks:
-  - name: Setting Hostname
-    hostname: name=workstation.do180.lab
-  
   - name: Configuring network
     shell: >
       nmcli con mod "System enp0s8" 
@@ -148,10 +145,7 @@
           For root - use \`sudo\` or \`sudo su -\`
          
           Image Registry availabe at registry.do180.lab:5000
-          It hosts the following images:
-            - hello-world
-            - httpd
-            - mariadb
+          Check http://registry.do180.lab to see the latest images.
          "
   - name: Adjusting Services and Rebooting
     selinux:
