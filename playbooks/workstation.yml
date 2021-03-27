@@ -144,7 +144,7 @@
          
           For root - use \`sudo\` or \`sudo su -\`
          
-          Image Registry availabe at registry.do180.lab:5000
+          Image Registry available at registry.do180.lab:5000
           Check http://registry.do180.lab to see the latest images.
          "
   - name: Adjusting Services and Rebooting
