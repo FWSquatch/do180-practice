@@ -20,13 +20,15 @@ The original DO180 sample exam lacks a few topics that are on the modern EX188 e
 I will soon add exercises (and walkthroughs) for the following topics:
 
 * Podman Stacks
-* Podman Secrets
+* ~~Podman Secrets~~
 
 
 # EX180 and EX188 Automated Practice Deployment
 _Powered by Ansible and Vagrant_ 
 
 Using the files in this project,  you can quickly build a lab environment to learn with [this EX180 Practice Exam](./Assignments/Original.md)
+
+Once you have finished those tasks, [continue with my own extra assignments](./Assignments/Extras.md)!
 
 
 ## Installation
