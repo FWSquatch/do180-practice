@@ -53,11 +53,11 @@
       - name: Set up INSECURE registries
         copy:
           content: |
-            [registries.search]
-            registries = ['{{ansible_fqdn}}:5000','registry.redhat.io', 'quay.io', 'docker.io']
-  
-            [registries.insecure]
-            registries = ['{{ansible_fqdn}}:5000']
+            unqualified-search-registries = ["{{ansible_fqdn}}:5000", "registry.redhat.io", "quay.io", "docker.io"]
+
+            [[registry]]
+            location = "{{ansible_fqdn}}:5000"
+            insecure = true
           dest: /etc/containers/registries.conf
       when: insecure_reg == true
   
@@ -133,8 +133,8 @@
         state: touch
         mode: 0755
 
-#  - name: Fixing SELinux Contexts
-#    shell: restorecon -Rv /var/www/html
+    - name: Fixing SELinux Contexts
+      shell: restorecon -Rv /var/www/html
 
     - name: Building Welcome Message
       blockinfile:

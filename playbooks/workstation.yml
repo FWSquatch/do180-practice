@@ -33,40 +33,6 @@
       name: [ 'bash-completion', 'vim', 'mariadb', 'skopeo', 'mosquitto' ]
       state: latest
 
-  - name: Get latest s2i version
-    shell: >
-      curl -s https://api.github.com/repos/openshift/source-to-image/releases/latest 
-      | grep browser_download_url   | grep linux-amd64   | cut -d '"' -f 4 
-    register: release_ver
-    args:
-      warn: false
-    
-  - debug:
-      msg: "Latest version of s2i = {{ release_ver.stdout }}"
-
-  - name: Create /tmp/s2i-dir
-    file:
-      path: /tmp/s2i-dir
-      state: directory
-
-  - name: Download latest s2i to /tmp/s2i-dir
-    get_url:
-      url: "{{ release_ver.stdout }}"
-      dest: /tmp/s2i-dir/s2i.tar.gz
-   
-  - name: Unarchive s2i.tar.gz
-    unarchive:
-      src: /tmp/s2i-dir/s2i.tar.gz
-      dest: /tmp/s2i-dir
-      remote_src: true
-
-  - name: Copy s2i to /usr/local/bin
-    copy:
-      src: /tmp/s2i-dir/s2i
-      dest: /usr/local/bin/s2i
-      mode: "0755"
-      remote_src: true 
-
   - name: Create some directories
     file:
       path: "{{ item }}"
@@ -147,7 +113,4 @@
           Image Registry available at registry.do180.lab:5000
           Check http://registry.do180.lab to see the latest images.
          "
-  - name: Adjusting Services and Rebooting
-    selinux:
-      state: permissive
-      policy: targeted
+

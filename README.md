@@ -11,6 +11,19 @@ The original repository for the project did not include a license statement.
 
 I have taken the liberty of applying CC-BY-SA-4.0, for the time being. I will also contact the original author, to ask about their preferences.
 
+## Walkthrough 
+
+You will find an excellent walkthrough of the original DO180 sample exam, here: https://ziyonotes.uz/ex180-sample
+
+## To Do list
+
+The original DO180 sample exam lacks a few topics that are on the modern EX188 exam. 
+
+I will soon add exercises (and walkthroughs) for the following topics:
+
+* Podman Stacks
+* Podman Secrets
+
 # EX180 and EX188 Automated Practice Deployment
 _Powered by Ansible and Vagrant_ 
 
@@ -23,6 +36,8 @@ Install this system to complete [this EX180 Practice Exam](https://docs.google.c
 4. Change into the newly created directory: `cd do180-practice`
 5. Fire up the VMs: `vagrant up`
 
+Both VMs will take 1024MB of RAM, so make sure you have (at least) 2GB of RAM to spare.
+
 ## Other Useful Information:
 - `vagrant up` - Boots and provisions the environment
 - `vagrant destroy -f` - Shuts down and destroys the environment
@@ -30,7 +45,12 @@ Install this system to complete [this EX180 Practice Exam](https://docs.google.c
 - `vagrant suspend` - Puts the VMs in a suspended state
 - `vagrant resume` - Takes VMs out of a suspended state
 
-You can also use the VirtualBox console to interact with the VMs or through a terminal. If you need to reset the root password, you would need to use the console. I'm constantly making upgrades to the environments, so every once and awhile run `git pull` in the repo directory to pull down changes. If you're using Windows, it's recommended to use Github Desktop so you can easily pull changes that are made to the environment. The first time you run the vagrant up command, it will download the OS images for later use. In other words, it will take longest the first time around but will be faster when it is deployed again. You can run `vagrant destroy -f` to destroy your environment at anytime. **This will erase everything**. This environment is meant to be reuseable, If you run the `vagrant up` command after destroying the environment, the OS image will already be downloaded and environment will deploy faster. Deployment should take around 15 minutes depending on your computer. You shouldn't need to access the IPA server during your practice exams. Everything should be provided that you would normally need during an actual exam. Hope this helps in your studies!
+The first time you run the vagrant up command, it will download the OS images for later use. In other words, it will take longest the first time around but will be faster when it is deployed again. You can run `vagrant destroy -f` to destroy your environment at anytime. **This will erase everything**. 
+
+This environment is meant to be reuseable, If you run the `vagrant up` command after destroying the environment, the OS image will already be downloaded and environment will deploy faster. 
+
+You can work with either VM through SSH: open a terminal window on your host OS, "cd" into this Git repository and type "vagrant ssh registry", or "vagrant ssh workstation". 
+
 
 ## Included systems:
 - registry.do180.lab
