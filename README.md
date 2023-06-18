@@ -9,7 +9,7 @@ In the next few days/weeks, I will update this setup to work with a RHEL 8-like 
 
 The original repository for the project did not include a license statement. 
 
-I have taken the liberty of applying CC-BY-SA-4.0, for the time being. I will also contact the original author, to ask about their preferences.
+For my fork of the project, I have taken the liberty of applying CC-BY-SA-4.0, for the time being. After discussing this with the original author, [they agreed that CC-BY-SA-4.0 is fine](https://github.com/FWSquatch/do180-practice/issues/1). 
 
 ## Walkthrough 
 
