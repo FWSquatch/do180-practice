@@ -1,2 +1,3 @@
 *.retry.yml/
 *.vagrant/
+**/.DS_Store
