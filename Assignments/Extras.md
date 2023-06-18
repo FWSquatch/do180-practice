@@ -40,4 +40,25 @@ Run the command located in /sql/beer.sql to insert values into the database.
 `mysql -uroot -h 192.168.88.4 -pSQLp4ss < /sql/beer.sql`
 
 
+## Task 9
 
+**Note:**
+
+> This task heavily leans on the Docker Samples project's _Voting App_. 
+
+Use the incomplete Podman Stack file located in /dockerfiles/voting/docker-compose.yml. Use the comments in the file to guide you through the process of creating a Podman Stack with the following requirements:
+
+* There are two networks: front-end (of type bridge) and back-end (of type internal).
+* There is one volume: db-data
+
+The Stack consists of five services:
+
+* Using the "redis" image, named "redis", in network "front-end"
+* Using the "postgres:9.4" image, named "db", in network "back-end", with volume "db-data" mounted on /var/postgres.
+* The Postgres container needs to have two environment variables: POSTGRES_USER and POSTGRES_PASSWORD, both set to "postgres". 
+* Using the "voting-app" image, named "vote", in networks "back-end" and in "front-end". 
+* The "vote" container exposes port 5000 on public port 5000. It depends on "redis". 
+* Using the "result" image, named "result", in networks "back-end" and in "front-end". 
+* The "vote" container exposes port 5001 on public port 5001. It depends on "db". 
+* Using the "worker" image, named "worker", in networks "back-end" and "front-end". 
+* The "worker" container depends on both "db" and "redis". 
