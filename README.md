@@ -26,7 +26,7 @@ I will soon add exercises (and walkthroughs) for the following topics:
 # EX180 and EX188 Automated Practice Deployment
 _Powered by Ansible and Vagrant_ 
 
-Install this system to complete [the original EX180 Practice Exam](./Assignments/Original.md)
+Using the files in this project,  you can quickly build a lab environment to learn with [this EX180 Practice Exam](./Assignments/Original.md)
 
 
 ## Installation
