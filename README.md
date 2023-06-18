@@ -5,6 +5,12 @@ Their last update to the project was in March of 2021, with the sample exam envi
 
 In the next few days/weeks, I will update this setup to work with a RHEL 8-like environment. 
 
+## License
+
+The original repository for the project did not include a license statement. 
+
+I have taken the liberty of applying CC-BY-SA-4.0, for the time being. I will also contact the original author, to ask about their preferences.
+
 # EX180 and EX188 Automated Practice Deployment
 _Powered by Ansible and Vagrant_ 
 
