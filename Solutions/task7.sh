@@ -1,3 +1,9 @@
+#!/bin/bash
+
+cp /dockerfiles/mosquitto/colors.tar .
+cp /dockerfiles/mosquitto/skeeter.sh .
+
+cat > ./task7.dockerfile << EOF
 # Use the centos 7 base image
 FROM centos:7
 
@@ -27,3 +33,16 @@ USER duffman
 
 # Run the skeeter.sh script
 ENTRYPOINT ["/skeeter.sh"]
+EOF
+
+podman build -t skeeter:1.0 -f ./task7.dockerfile .
+
+rm colors.tar skeeter.sh
+
+podman run -d --name mosquitto-1 \
+        -p 11883:1883 \
+        skeeter:1.0
+
+echo "Now starting test...Stop with ctrl-C."
+
+mosquitto_sub -h 127.0.0.1 -p 11883 -t "#"
