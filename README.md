@@ -10,17 +10,7 @@ In this fork, I am updating the environment to match todays RHEL8-based EX188 ex
 
 The original repository for the project did not include a license statement. 
 
-For my fork of the project, I have taken the liberty of applying CC-BY-SA-4.0, for the time being. After discussing this with the original author, [they agreed that CC-BY-SA-4.0 is fine](https://github.com/FWSquatch/do180-practice/issues/1). 
-
-
-## To Do list
-
-The original DO180 sample exam lacks a few topics that are on the modern EX188 exam. 
-
-I will soon add exercises (and walkthroughs) for the following topics:
-
-* Podman Stacks
-* ~~Podman Secrets~~
+For my fork of the project, I have taken the liberty of applying CC-BY-SA-4.0, for the time being. The original author [agreed that CC-BY-SA-4.0 is fine](https://github.com/FWSquatch/do180-practice/issues/1). 
 
 
 # EX180 and EX188 Automated Practice Deployment
