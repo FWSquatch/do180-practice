@@ -56,9 +56,9 @@ The Stack consists of five services:
 * Using the "redis" image, named "redis", in network "front-end"
 * Using the "postgres:9.4" image, named "db", in network "back-end", with volume "db-data" mounted on /var/postgres.
 * The Postgres container needs to have two environment variables: POSTGRES_USER and POSTGRES_PASSWORD, both set to "postgres". 
-* Using the "voting-app" image, named "vote", in networks "back-end" and in "front-end". 
+* Using the "dockersamples/examplevotingapp_vote" image, named "vote", in networks "back-end" and in "front-end". 
 * The "vote" container exposes port 5000 on public port 5000. It depends on "redis". 
-* Using the "result" image, named "result", in networks "back-end" and in "front-end". 
+* Using the "dockersamples/examplevotingapp_result" image, named "result", in networks "back-end" and in "front-end". 
 * The "vote" container exposes port 5001 on public port 5001. It depends on "db". 
-* Using the "worker" image, named "worker", in networks "back-end" and "front-end". 
+* Using the "dockersamples/examplevotingapp_worker" image, named "worker", in networks "back-end" and "front-end". 
 * The "worker" container depends on both "db" and "redis". 
