@@ -42,6 +42,24 @@ Run the command located in /sql/beer.sql to insert values into the database.
 
 ## Task 9
 
+Create a Dockerfile which creates a container image with the following requirements. Store the Dockerfile as ~/task9.dockerfile.
+
+* Based on centos:7.
+* During the build, create a user account.
+* "joe" must be the default user.
+* Read an argument during build-time to override the name "joe".
+* The container must run "whoami" to show the active user.
+
+NOTE: Arguments are NOT passed during runtime of the container! They are passed during the container build. 
+
+Create two container images using this Dockerfile, named hello-joe:1.0 and hello-lisa:1.0.
+
+When run, they should respectively output "joe" and "lisa". 
+
+
+
+## Task 10
+
 **Note:**
 
 > This task heavily leans on the Docker Samples project's _Voting App_. 
@@ -62,3 +80,5 @@ The Stack consists of five services:
 * The "vote" container exposes port 5001 on public port 5001. It depends on "db". 
 * Using the "dockersamples/examplevotingapp_worker" image, named "worker", in networks "back-end" and "front-end". 
 * The "worker" container depends on both "db" and "redis". 
+
+
