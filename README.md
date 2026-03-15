@@ -3,7 +3,7 @@ This set of sample files started out as a direct clone of [the work by FWSquatch
 
 Their last update to the project was in March of 2021, with the sample exam environment based on CentOS 7. 
 
-In this fork, I am updating the environment to match todays RHEL8-based EX188 exam.
+In this fork, I originally updated the environment to match the RHEL8-based EX188 exam. And per March 2026, I'm updating it for RHEL9.
 
 
 ## License
@@ -16,13 +16,13 @@ For my fork of the project, I have taken the liberty of applying CC-BY-NC-SA-4.0
 # EX180 and EX188 Automated Practice Deployment
 _Powered by Ansible and Vagrant_ 
 
-Using the files in this project, you can quickly build a lab environment to learn with [this EX180 Practice Exam](./Assignments/Original.md)
+Using the files in this project, you can quickly build a lab environment to learn with [this EX188 Practice Exam](./Assignments/Original.md)
 
 Once you have finished those tasks, [continue with my own extra assignments](./Assignments/Extras.md)!
 
 
 ## Installation
-1. Install vagrant and virtualbox.
+1. Install Vagrant and VirtualBox.
 2. Clone this repo: `git clone https://github.com/Unixerius/EX188-practice`
 3. Change into the newly created directory: `cd EX188-practice`
 4. Fire up the VMs: `vagrant up`
@@ -62,3 +62,11 @@ You can work with both VMs through SSH:
 2. "cd" into this Git repository.
 3. Type "vagrant up" and wait for the VMs to be ready.
 3. Type "vagrant ssh registry", or "vagrant ssh workstation" to login to the VM.
+
+
+## Compatibility
+
+This lab was originally made only with x86_64 systems in mind. 
+
+For now, it cannot yet be used on MacOS systems with Apple's ARM processors.
+
