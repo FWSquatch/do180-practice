@@ -16,7 +16,7 @@
   tasks:
     - name: Configuring network
       shell: >
-        nmcli con mod "{{ ansible_default_ipv4.interface }}"
+        nmcli con mod "System eth1"
         ipv4.addresses "192.168.88.5/24"
         ipv4.gateway "192.168.88.1"
         ipv4.dns "8.8.8.8"
@@ -41,6 +41,7 @@
         state: latest
       loop:
         - podman
+        - firewalld
         - httpd
         - vim
         - bash-completion

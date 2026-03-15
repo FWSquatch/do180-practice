@@ -27,7 +27,9 @@ Once you have finished those tasks, [continue with my own extra assignments](./A
 3. Change into the newly created directory: `cd EX188-practice`
 4. Fire up the VMs: `vagrant up`
 
-Both VMs will take 1024MB of RAM, so make sure you have (at least) 2GB of RAM to spare.
+Both VMs will take 20248MB of RAM, so make sure you have (at least) 4GB of RAM to spare.
+
+The previous version of this lab, with RHEL8, would work with 1024MB per node. Not anymore. :(
 
 
 ## Other Useful Information:

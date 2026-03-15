@@ -7,7 +7,7 @@
   tasks:
   - name: Configuring network
     shell: >
-      nmcli con mod "{{ ansible_default_ipv4.interface }}" 
+      nmcli con mod "System eth1" 
       ipv4.addresses "192.168.88.4/24"
       ipv4.gateway " 192.168.88.1"
       ipv4.dns "8.8.8.8" 
@@ -30,7 +30,7 @@
 
   - name: Install a few packages
     yum:
-      name: [ 'bash-completion', 'vim', 'mariadb', 'skopeo', 'mosquitto' ]
+      name: [ 'bash-completion', 'vim', 'firewalld', 'mariadb', 'skopeo', 'mosquitto' ]
       state: latest
 
   - name: Create some directories
