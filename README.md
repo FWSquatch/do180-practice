@@ -73,3 +73,4 @@ For now, it cannot yet be used on MacOS systems with Apple's ARM processors.
 
 If you'd like some training to prepare for the exam, there are many vendors who offer a short and acceptable EX188 prep course. If you want my opinion, take a short subscription with O'Reilly Online (or do a trial) and use [Sander van Vugt's EX188 course](https://www.oreilly.com/videos/red-hat-certified/9780135335956/).
 
+Would you like to do more practice tasks? The wonderful Lisenet has [a series of tasks for the old EX180 exam](https://www.lisenet.com/?s=ex180&submit=Search); you can skip all the OpenShift tasks.
