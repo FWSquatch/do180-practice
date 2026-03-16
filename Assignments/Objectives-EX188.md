@@ -4,7 +4,6 @@
 
 
 ## Implement images using Podman and Containerfile
-|------------------------------------------|-------------|
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 |Understand how to specify the container’s base image. | 6,7,9 | 
@@ -20,7 +19,6 @@
 
 
 ## Manage images
-|------------------------------------------|-------------|
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Understand private registry security. | 1,5,6 |
@@ -32,7 +30,6 @@
 
 
 ## Run containers locally using Podman
-|------------------------------------------|-------------|
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Run containers locally using Podman | ALL |
@@ -47,7 +44,6 @@
 
 
 ## Run multi-container applications with Podman
-|------------------------------------------|-------------|
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Create application stacks | 10 |
@@ -60,7 +56,6 @@
 
 
 ## Troubleshoot containerized applications
-|------------------------------------------|-------------|
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Understand the description of application resources | n.a. |
@@ -71,7 +66,6 @@
 
 
 ## Not listed in the objectives, but important
-|------------------------------------------|-------------|
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Deploy containers as a Systemd service. | 2 |
