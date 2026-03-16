@@ -82,3 +82,6 @@ The Stack consists of five services:
 * The "worker" container depends on both "db" and "redis". 
 
 
+# Do you want more?
+
+Would you like to do more practice tasks? The wonderful Lisenet has [a series of tasks for the old EX180 exam](https://www.lisenet.com/?s=ex180&submit=Search); you can skip all the OpenShift tasks. Lisenet also has a [great document with notes and practice tasks](https://github.com/lisenet/RHCA-study-notes/blob/master/EX180_study_notes.md).
