@@ -1,9 +1,12 @@
 # Exam objectives (2026)
 
-[Red Hat publishes a clear list of objectives](https://www.redhat.com/en/services/training/ex188-red-hat-certified-specialist-containers-exam) for the EX188 exam. The table below maps the objectives to practice tasks in this repository and in the original EX180 practice test.
+[Red Hat publishes a clear list of objectives](https://www.redhat.com/en/services/training/ex188-red-hat-certified-specialist-containers-exam) for the EX188 exam. 
+
+The table below maps the objectives to practice tasks in this repository and in the original EX180 practice test.
 
 
 ## Implement images using Podman and Containerfile
+
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 |Understand how to specify the container’s base image. | 6,7,9 | 
@@ -15,10 +18,10 @@
 |Understand container volumes including sharing host data with the container. | 2 |
 |Understand the security and permissions requirements related to host and network access from the container. | n.a. |
 |Understand container and image life cycles and how to manage them. | ALL |
-|------------------------------------------|-------------|
 
 
 ## Manage images
+
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Understand private registry security. | 1,5,6 |
@@ -26,10 +29,10 @@
 | Understand and use image tags | 3,4,5,6 |
 | Push and pull images from and to registries. | ALL |
 | Back up an image with its layers and meta data vs. backup a container state. | 5 |
-|------------------------------------------|-------------|
 
 
 ## Run containers locally using Podman
+
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Run containers locally using Podman | ALL |
@@ -40,10 +43,10 @@
 | Expose public applications. | ALL |
 | Get application logs. | ALL |
 | Inspect running applications. | ALL |
-|------------------------------------------|-------------|
 
 
 ## Run multi-container applications with Podman
+
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Create application stacks | 10 |
@@ -52,20 +55,20 @@
 | Working with secrets | n.a. |
 | Working with volumes | 10 |
 | Working with configuration | 10 |
-|------------------------------------------|-------------|
 
 
 ## Troubleshoot containerized applications
+
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Understand the description of application resources | n.a. |
 | Get application logs | ALL |
 | Inspect running applications | ALL |
 | Connecting to running containers | 3,5 |
-|------------------------------------------|-------------|
 
 
 ## Not listed in the objectives, but important
+
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
 | Deploy containers as a Systemd service. | 2 |
@@ -73,7 +76,6 @@
 | Working with secrets (without Compose). | 8 |
 | Passing arguments and settings during the Build phase. | 9 |
 | Defining a user service (as opposed to system/root) in Systemd. | n.a. |
-|------------------------------------------|-------------|
 
 
 # Notes from Red Hat
