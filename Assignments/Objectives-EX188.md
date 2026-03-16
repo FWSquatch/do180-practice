@@ -1,0 +1,103 @@
+# Exam objectives (2026)
+
+[Red Hat publishes a clear list of objectives](https://www.redhat.com/en/services/training/ex188-red-hat-certified-specialist-containers-exam) for the EX188 exam. The table below maps the objectives to practice tasks in this repository and in the original EX180 practice test.
+
+
+## Implement images using Podman and Containerfile
+|------------------------------------------|-------------|
+| Objective                                | Assignments |
+|------------------------------------------|-------------|
+|Understand how to specify the container’s base image. | 6,7,9 | 
+|Understand how to add content to the container. | 6,7,9 | 
+|Understand how to configure the container’s run time environment including user id, working directory and running arbitrary commands. | 2,3,6,7,9 | 
+|Understand when and how to expose ports from a Containerfile. | 6,7 |
+|Understand how to pass environment variables and arguments to an image built from a Containerfile. | 3,9 |
+|Understand how to specify the command to be run in a custom image. | 6,7,9 |
+|Understand container volumes including sharing host data with the container. | 2 |
+|Understand the security and permissions requirements related to host and network access from the container. | n.a. |
+|Understand container and image life cycles and how to manage them. | ALL |
+|------------------------------------------|-------------|
+
+
+## Manage images
+|------------------------------------------|-------------|
+| Objective                                | Assignments |
+|------------------------------------------|-------------|
+| Understand private registry security. | 1,5,6 |
+| Interact with many different registries. | ALL |
+| Understand and use image tags | 3,4,5,6 |
+| Push and pull images from and to registries. | ALL |
+| Back up an image with its layers and meta data vs. backup a container state. | 5 |
+|------------------------------------------|-------------|
+
+
+## Run containers locally using Podman
+|------------------------------------------|-------------|
+| Objective                                | Assignments |
+|------------------------------------------|-------------|
+| Run containers locally using Podman | ALL |
+| Get container logs. | ALL |
+| Listen to container events on the container host. | n.a. |
+| Use Podman inspect. | n.a. |
+| Specifying environment parameters. | 3,8 |
+| Expose public applications. | ALL |
+| Get application logs. | ALL |
+| Inspect running applications. | ALL |
+|------------------------------------------|-------------|
+
+
+## Run multi-container applications with Podman
+|------------------------------------------|-------------|
+| Objective                                | Assignments |
+|------------------------------------------|-------------|
+| Create application stacks | 10 |
+| Understand container dependencies | 10 |
+| Working with environment variables | 10 |
+| Working with secrets | n.a. |
+| Working with volumes | 10 |
+| Working with configuration | 10 |
+|------------------------------------------|-------------|
+
+
+## Troubleshoot containerized applications
+|------------------------------------------|-------------|
+| Objective                                | Assignments |
+|------------------------------------------|-------------|
+| Understand the description of application resources | n.a. |
+| Get application logs | ALL |
+| Inspect running applications | ALL |
+| Connecting to running containers | 3,5 |
+|------------------------------------------|-------------|
+
+
+## Not listed in the objectives, but important
+|------------------------------------------|-------------|
+| Objective                                | Assignments |
+|------------------------------------------|-------------|
+| Deploy containers as a Systemd service. | 2 |
+| Use Skopeo to interact with image repositories. | 4 |
+| Working with secrets (without Compose). | 8 |
+| Passing arguments and settings during the Build phase. | 9 |
+| Defining a user service (as opposed to system/root) in Systemd. | n.a. |
+|------------------------------------------|-------------|
+
+
+# Notes from Red Hat
+As with all Red Hat performance-based exams, configurations must persist after reboot without intervention.
+
+During the exam you may be required to work with one or more pre-written applications. You will not be required to modify application code however in some cases you may need to utilize supplied documentation in order to produce a new deployment of a given application.
+
+
+# Not on the exam
+
+The accompanying training DO188 includes topics which are **not** on the EX188 exam. These topics include:
+
+* Red Hat OpenShift
+* Kubernetes
+
+The exam website mentions that:
+
+> "This exam is based on RHEL9, podman v4.4 and OCP v4.14 [...]"
+
+But the exam objectives have no mention at all of OCP (OpenShift Container Platform).
+
