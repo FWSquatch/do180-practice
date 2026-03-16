@@ -71,11 +71,14 @@ The table below maps the objectives to practice tasks in this repository and in 
 
 | Objective                                | Assignments |
 |------------------------------------------|-------------|
+| Installing Podman Compose | n.a. |
 | Deploy containers as a Systemd service. | 2 |
+| Defining a user service (as opposed to system/root) in Systemd. | n.a. |
 | Use Skopeo to interact with image repositories. | 4 |
 | Working with secrets (without Compose). | 8 |
 | Passing arguments and settings during the Build phase. | 9 |
-| Defining a user service (as opposed to system/root) in Systemd. | n.a. |
+| Using SEManage to set container_file_t context on files and volumes. | n.a. |
+| Know how to operate the firewall, if external access is required. | n.a. |
 
 
 # Notes from Red Hat
