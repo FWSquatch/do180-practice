@@ -11,8 +11,14 @@ I can't tell if they were made by the same person, or if one copied from another
 
 I will not include the original texts here, on the off chance that it was a stolen and real exam. 
 
+
 # Walkthrough
 
 Ziyo Notes wrote a nice walkthrough that shows you how each assignment could be completed.
 
 * [https://ziyonotes.uz/ex180-sample](https://ziyonotes.uz/ex180-sample)
+
+
+# Are the original assignments gone?
+
+Try the above URLs, or Ziyo's Notes, through https://archive.org/web/
