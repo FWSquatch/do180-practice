@@ -293,10 +293,14 @@ Note, you may substitute the "image" field with "build", which points to a direc
 
 To use _podman-compose_ on RHEL, you will need to enable the EPEL repositories. ([source](https://access.redhat.com/discussions/6979552))
 
-`sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms`
-`sudo dnf install` <https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm>
-`sudo dnf upgrade`
-`sudo dnf install podman-compose`
+```
+sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+
+sudo dnf upgrade
+sudo dnf install podman-compose
+```
 
 or
 
