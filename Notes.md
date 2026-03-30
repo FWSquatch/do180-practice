@@ -174,12 +174,15 @@ Feb 07 14:22:00 nebuchadnezzar podman[114843]: 2023-02-07 14:21:56.62938647 +010
 Dec 13 16:24:59 nebuchadnezzar podman[33229]: 2022-12-13 16:24:42.432159429 +0100 CET m=+0.044870186 image pull  hello-world
 ```
 
-## Skopeo to search and inspect
 
-```
-skopeo inspect docker://registry.fedoraproject.org/fedora:latest
-skopeo list-tags docker://registry.fedoraproject.org/fedora
-```
+## Podman pods and networking
+
+One important difference between Podman and Docker: if you put multiple containers into the same pod, they will all share the samen network namespace. Between the containers in the pod, "localhost" (127.0.0.1) will be the same! Process X in container A can communicate with process Y in container B, via `localhost`. 
+
+[Source: Podman networking documentation](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md#communicating-between-containers-and-pods)
+
+[Demonstration here in Lisenet's Wordpress + MySQL example](https://www.lisenet.com/2022/ex180-series-deploying-a-rootless-multi-container-wordpress-application-with-podman/)
+
 
 ## Important note about bind mount and SELinux
 
@@ -205,6 +208,31 @@ unqualified-search-registries = ["localhost:5000", "registry.access.redhat.com",
 location = "localhost:5000"
 insecure = true
 ```
+
+
+## Pushing images to a registry
+
+```
+podman tag localhost/httpd-ubi quay.io/flozanorht/httpd-ubi:latest
+podman push quay.io/flozanorht/httpd-ubi:latest
+
+# Or...
+podman push localhost/httpd-ubi quay.io/flozanorht/httpd-ubi:latest
+
+# Or ...
+skopeo copy containers-storage:localhost/httpd-ubi \
+    docker://quay.io/flozanorht/httpd-ubi:latest
+```
+
+Setting multiple tags for the exact same image:
+```
+skopeo copy docker://quay.io/flozanorht/httpd-ubi:1234 \
+    docker://quay.io/flozanorht/httpd-ubi:v1.0
+    
+skopeo copy docker://quay.example.com/flozanorht/httpd-ubi:1234 \
+    docker://quay.io/flozanorht/httpd-ubi:latest
+```
+
 
 ## Setting up your own registry with Podman
 
