@@ -1,6 +1,6 @@
 #!/bin/sh
 
-skopeo list-tags registry.do180.lab:5000/httpd
+skopeo list-tags docker://registry.do180.lab:5000/httpd
 
 sudo podman pull registry.do180.lab:5000/httpd:latest
 
