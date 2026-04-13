@@ -16,8 +16,11 @@ ADD colors.tar /
 # Move skeeter.sh over to /skeeter.sh
 COPY skeeter.sh /skeeter.sh
 
+# Put mosquitto.conf into /etc/
+COPY mosquitto.conf /etc/mosquitto.conf
+
 # Make skeeter.sh executable
-RUN chmod 755 /skeeter.sh
+RUN chmod 755 /skeeter.sh && chmod 644 /etc/mosquitto.conf
 
 # Allow connections to port 1883
 EXPOSE 1883
