@@ -9,7 +9,7 @@ This document adds a few missing topics.
 
 ## Task 8
 
-Use the MariaDB container from task 3. 
+This tasks builds on work you have already done in task 3.
 
 Refactor your configuration in such a way that you create four Podman secrets:
 
@@ -33,11 +33,14 @@ Once the container is up and running, prove that your settings are correctly app
 
 Connect to your database as the root user and check for the existence of the beer database:
 
-`echo "show databases;" | mysql -uduffman -h 0.0.0.0 -psaysoyeah -P 3307`
+`echo "show databases;" | mysql -uduffman -psaysoyeah -h workstation -p 3307`
 
 Run the command located in /sql/beer.sql to insert values into the database.
 
-`mysql -uroot -h 0.0.0.0 -pSQLp4ss -P 3307 < /sql/beer.sql`
+```
+mysql -uroot -pSQLp4ss -h workstation -p 3307 < /sql/beer.sql
+echo 'select * from types' | mysql -uduffman -psaysoyeah -h workstation -p 3307 beer
+```
 
 
 ## Task 9
