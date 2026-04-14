@@ -47,7 +47,7 @@ echo 'select * from types' | mysql -uduffman -psaysoyeah -h workstation -p 3307 
 
 Create a Dockerfile which creates a container image with the following requirements. Store the Dockerfile as ~/task9.dockerfile.
 
-* Based on centos:7.
+* Based on centos:9.
 * During the build, create a user account.
 * "joe" must be the default user.
 * Read an argument during build-time to override the name "joe".
