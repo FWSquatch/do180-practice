@@ -1,3 +1,6 @@
+# STOP! This is out of date!
+This repo is out of date. The study environment has been updated to RHEL9 by user unixerius. [Try it out here](https://github.com/unixerius/EX188-practice).
+
 # Introduction
 This set of sample files started out as a direct clone of [the work by FWSquatch](https://github.com/FWSquatch/do180-practice). 
 
