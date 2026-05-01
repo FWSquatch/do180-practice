@@ -4,7 +4,7 @@ This repo is out of date. The study environment has been updated to RHEL9 by use
 # Introduction
 This set of sample files started out as a direct clone of [the work by FWSquatch](https://github.com/FWSquatch/do180-practice). 
 
-Their last update to the project was in March of 2021, with the sample exam environment based on ContOS 7. 
+Their last update to the project was in March of 2021, with the sample exam environment based on CentOS 7. 
 
 In this fork, I am updating the environment to match todays RHEL8-based EX188 exam.
 
@@ -19,7 +19,7 @@ For my fork of the project, I have taken the liberty of applying CC-BY-SA-4.0, f
 # EX180 and EX188 Automated Practice Deployment
 _Powered by Ansible and Vagrant_ 
 
-Using the files in this project,  you can quickly build a lab environment to learn with [this EX180 Practice Exam](./Assignments/Original.md)
+Using the files in this project, you can quickly build a lab environment to learn with [this EX180 Practice Exam](./Assignments/Original.md)
 
 Once you have finished those tasks, [continue with my own extra assignments](./Assignments/Extras.md)!
 
